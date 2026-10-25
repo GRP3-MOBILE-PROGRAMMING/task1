@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#FFFFFF"
+    android:padding="24dp">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UNEB e-Results"
+        android:textColor="#222222"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Excellence in Assessment"
+        android:textColor="#666666"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/uganda_coat_of_arms"
+        android:contentDescription="Uganda Coat of Arms"
+        android:scaleType="fitCenter" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="145dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="28dp"
+        android:text="Sign in to access examination services"
+        android:textColor="#666666"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Candidate / Index Number"
+        android:textColor="#444444"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/candidateNumber"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/login_field_border"
+        android:backgroundTint="@null"
+        android:hint="Enter candidate or index number"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:singleLine="true"
+        android:textColor="#222222"
+        android:textColorHint="#999999"
+        android:textSize="14sp"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textColor="#444444"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/login_field_border"
+        android:backgroundTint="@null"
+        android:hint="Enter password"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:singleLine="true"
+        android:textColor="#222222"
+        android:textColorHint="#999999"
+        android:textSize="14sp"
+        android:inputType="textPassword" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signInButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/signin_button_border"
+        android:backgroundTint="@null"
+        android:text="Sign in"
+        android:textAllCaps="false"
+        android:textColor="#222222"
+        android:textSize="16sp" />
+
+</LinearLayout>
