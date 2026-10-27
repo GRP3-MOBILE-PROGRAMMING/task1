@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Build gradle</string>
+    <string name="app_name">UNEB e-Results</string>
+    <string name="transition_logo">UNEB_logo</string>
 </resources>

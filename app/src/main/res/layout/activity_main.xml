@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".Home">
+    tools:context=".SplashActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,6 +21,8 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
+            android:id="@+id/logo"
+            android:transitionName="@string/transition_logo"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@drawable/uganda_coat_of_arms"

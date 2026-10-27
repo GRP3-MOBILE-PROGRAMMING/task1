@@ -35,6 +35,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -43,4 +44,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.9.0")
+    implementation("androidx.lifecycle:lifecycle-livedata:2.9.0")
+    implementation("commons-net:commons-net:3.11.1")
 }
