@@ -8,6 +8,9 @@ import android.net.NetworkCapabilities;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Checks whether the device has a network connection and can actually reach the internet.
+ */
 public class NetworkChecker {
 
     // Lightweight endpoint that returns HTTP 204 with an empty body.
@@ -17,11 +20,20 @@ public class NetworkChecker {
 
     private final Context context;
 
+    /**
+     * Creates a checker bound to the application context.
+     *
+     * @param context any context; only its application context is kept
+     */
     public NetworkChecker(Context context) {
         this.context = context.getApplicationContext();
     }
 
-    /** Quick check: does the device report an active network with internet capability? */
+    /**
+     * Quick check: does the device report an active network with internet capability?
+     *
+     * @return true if an active network with internet capability exists
+     */
     public boolean hasNetwork() {
         ConnectivityManager cm =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -34,7 +46,11 @@ public class NetworkChecker {
         return caps != null && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
     }
 
-    /** Real check: can we actually reach the internet? MUST be called off the main thread. */
+    /**
+     * Real check: can we actually reach the internet? MUST be called off the main thread.
+     *
+     * @return true if the probe URL answers with HTTP 204 or 200
+     */
     public boolean canReachInternet() {
         if (!hasNetwork()) return false;
 
@@ -46,7 +62,7 @@ public class NetworkChecker {
             conn.setUseCaches(false);
             conn.setRequestMethod("GET");
             int code = conn.getResponseCode();
-            return code == 204 || code == 200;
+            return code == HttpURLConnection.HTTP_NO_CONTENT || code == HttpURLConnection.HTTP_OK;
         } catch (Exception e) {
             return false;
         } finally {

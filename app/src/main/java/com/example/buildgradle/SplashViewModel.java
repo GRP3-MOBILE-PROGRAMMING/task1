@@ -12,14 +12,22 @@ import java.util.concurrent.Executors;
 
 import android.util.Log;
 
+/**
+ * Runs the splash loading steps in the background and exposes their progress as LiveData.
+ */
 public class SplashViewModel extends AndroidViewModel {
 
+    /** Overall state of the loading sequence. */
     public enum Phase { LOADING, READY, ERROR }
 
+    private static final int WORKER_THREAD_COUNT = 4;
+    /** Short pause per step so the user can see the progress. */
+    private static final long STEP_DELAY_MS = 600;
 
-    private final ExecutorService executor = Executors.newFixedThreadPool(4);
+    private final ExecutorService executor = Executors.newFixedThreadPool(WORKER_THREAD_COUNT);
     private final NetworkChecker networkChecker;
-    private final MutableLiveData<StepStatus> internetStep = new MutableLiveData<>(StepStatus.PENDING);
+    private final MutableLiveData<StepStatus> internetStep =
+            new MutableLiveData<>(StepStatus.PENDING);
     private final MutableLiveData<StepStatus> timeStep = new MutableLiveData<>(StepStatus.PENDING);
     private final MutableLiveData<StepStatus> authStep = new MutableLiveData<>(StepStatus.PENDING);
     private final MutableLiveData<StepStatus> dataStep = new MutableLiveData<>(StepStatus.PENDING);
@@ -31,17 +39,69 @@ public class SplashViewModel extends AndroidViewModel {
 
     private final TimeValidator timeValidator = new TimeValidator();
 
+    /**
+     * Creates the view model. Called by the ViewModelProvider.
+     *
+     * @param application the running application
+     */
     public SplashViewModel(@NonNull Application application) {
         super(application);
-        networkChecker =new NetworkChecker(application);
+        networkChecker = new NetworkChecker(application);
     }
 
-    public LiveData<StepStatus> getInternetStep() { return internetStep; }
-    public LiveData<StepStatus> getTimeStep() { return timeStep; }
-    public LiveData<StepStatus> getAuthStep() { return authStep; }
-    public LiveData<StepStatus> getDataStep() { return dataStep; }
-    public LiveData<Phase> getPhase() { return phase; }
-    public LiveData<SplashError> getError() { return error; }
+    /**
+     * Status of the internet check step.
+     *
+     * @return the internet step status
+     */
+    public LiveData<StepStatus> getInternetStep() {
+        return internetStep;
+    }
+
+    /**
+     * Status of the secure time validation step.
+     *
+     * @return the time step status
+     */
+    public LiveData<StepStatus> getTimeStep() {
+        return timeStep;
+    }
+
+    /**
+     * Status of the authentication token prefetch step.
+     *
+     * @return the auth step status
+     */
+    public LiveData<StepStatus> getAuthStep() {
+        return authStep;
+    }
+
+    /**
+     * Status of the years and announcement download step.
+     *
+     * @return the data step status
+     */
+    public LiveData<StepStatus> getDataStep() {
+        return dataStep;
+    }
+
+    /**
+     * Overall loading phase.
+     *
+     * @return the current phase
+     */
+    public LiveData<Phase> getPhase() {
+        return phase;
+    }
+
+    /**
+     * Error that stopped loading, or null if none.
+     *
+     * @return the current error
+     */
+    public LiveData<SplashError> getError() {
+        return error;
+    }
 
     /** Called from onCreate. Does nothing if loading has already started (e.g. after rotation). */
     public void start() {
@@ -69,7 +129,7 @@ public class SplashViewModel extends AndroidViewModel {
             try {
                 // TODO Step 4: replace with the real internet check
                 internetStep.postValue(StepStatus.RUNNING);
-                Thread.sleep(600);
+                Thread.sleep(STEP_DELAY_MS);
                 if (!networkChecker.canReachInternet()) {
                     internetStep.postValue(StepStatus.FAILED);
                     error.postValue(SplashError.NO_INTERNET);
@@ -80,7 +140,7 @@ public class SplashViewModel extends AndroidViewModel {
 
                 // TODO Step 5: replace with the real NTP time validation
                 timeStep.postValue(StepStatus.RUNNING);
-                Thread.sleep(600);
+                Thread.sleep(STEP_DELAY_MS);
                 timeStep.postValue(StepStatus.SUCCESS);
                 timeStep.postValue(StepStatus.RUNNING);
                 Long offset = timeValidator.fetchOffsetMs();
@@ -105,12 +165,12 @@ public class SplashViewModel extends AndroidViewModel {
 
                 // TODO Step 6: replace with the real token and exam years prefetch
                 authStep.postValue(StepStatus.RUNNING);
-                Thread.sleep(600);
+                Thread.sleep(STEP_DELAY_MS);
                 authStep.postValue(StepStatus.SUCCESS);
 
                 // TODO Step 7: replace with the real announcement download
                 dataStep.postValue(StepStatus.RUNNING);
-                Thread.sleep(600);
+                Thread.sleep(STEP_DELAY_MS);
                 dataStep.postValue(StepStatus.SUCCESS);
 
                 phase.postValue(Phase.READY);
