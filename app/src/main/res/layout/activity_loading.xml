@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#FFFFFF"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/stepInternet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="○ Checking internet connection"
+        android:textColor="#777777"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/stepTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="○ Validating secure time"
+        android:textColor="#777777"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/stepAuth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="○ Preparing authentication"
+        android:textColor="#777777"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/stepData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="○ Loading years and announcement"
+        android:textColor="#777777"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:transitionName="@string/transition_logo"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:src="@drawable/uganda_coat_of_arms"
+        android:contentDescription="Uganda Coat of Arms"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="UNEB e-Results"
+        android:textColor="#222222"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Excellence in Assessment"
+        android:textColor="#777777"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Preparing your secure session"
+        android:textColor="#777777"
+        android:textSize="14sp" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_marginTop="16dp"
+        android:indeterminate="true" />
+
+
+</LinearLayout>
