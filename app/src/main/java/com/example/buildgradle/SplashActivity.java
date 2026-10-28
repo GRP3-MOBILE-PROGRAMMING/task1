@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+/**
+ * Launcher activity: shows the splash, then the loading steps, then the error or login screen.
+ */
 public class SplashActivity extends AppCompatActivity {
 
     private static final long SPLASH_MS = 1500; // Step 8 refines the minimum display time
@@ -106,7 +109,10 @@ public class SplashActivity extends AppCompatActivity {
         });
     }
 
-    /** Temporary: Step 9 replaces this with a real transition to LoginActivity/DashboardActivity. */
+    /**
+     * Temporary: Step 9 replaces this with a real transition to
+     * LoginActivity/DashboardActivity.
+     */
     private void goNext() {
         if (screen == SCREEN_LOGIN) return;
         screen = SCREEN_LOGIN;
@@ -115,7 +121,8 @@ public class SplashActivity extends AppCompatActivity {
 
     private void renderSteps() {
         if (stepInternet == null) return; // loading screen not showing yet
-        setStep(stepInternet, "Checking internet connection", viewModel.getInternetStep().getValue());
+        setStep(stepInternet, "Checking internet connection",
+                viewModel.getInternetStep().getValue());
         setStep(stepTime, "Validating secure time", viewModel.getTimeStep().getValue());
         setStep(stepAuth, "Preparing authentication", viewModel.getAuthStep().getValue());
         setStep(stepData, "Loading years and announcement", viewModel.getDataStep().getValue());

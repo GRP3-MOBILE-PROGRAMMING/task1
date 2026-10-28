@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<!--
+    Checkstyle rules for the UNEB e-Results Splash Screen app.
+
+    Severity levels:
+      error   - blocks the build (naming, Javadoc, magic numbers, line length, tabs)
+      warning - formatting issues an IDE can auto-fix; blocks the build while maxWarnings = 0
+      info    - awareness only, never blocks (TODO comments)
+-->
+<module name="Checker">
+    <!-- Anything not overridden below is an ERROR -->
+    <property name="severity" value="error"/>
+    <property name="charset" value="UTF-8"/>
+    <property name="fileExtensions" value="java"/>
+
+    <!-- Skip generated code (R.java, BuildConfig.java, build/) -->
+    <module name="SuppressionFilter">
+        <property name="file" value="${config_loc}/suppressions.xml"/>
+        <property name="optional" value="false"/>
+    </module>
+
+    <!-- ===== LINE LENGTH: max 100 characters ===== -->
+    <module name="LineLength">
+        <property name="max" value="100"/>
+        <property name="ignorePattern" value="^package.*|^import.*|a href|http://|https://"/>
+    </module>
+
+    <!-- ===== FILE-LEVEL WHITESPACE ===== -->
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+    <module name="NewlineAtEndOfFile">
+        <property name="severity" value="warning"/>
+    </module>
+
+    <module name="TreeWalker">
+
+        <!-- ===== 1. NAMING CONVENTIONS (error) ===== -->
+        <!-- Classes, interfaces, enums: PascalCase, e.g. SplashActivity -->
+        <module name="TypeName">
+            <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+        </module>
+        <!-- Methods: camelCase, e.g. checkNetworkConnection() -->
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+        <!-- Constants (static final): UPPER_SNAKE_CASE, e.g. CONNECTION_TIMEOUT_MS -->
+        <module name="ConstantName">
+            <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+        </module>
+        <module name="MemberName"/>
+        <module name="ParameterName"/>
+        <module name="LocalVariableName"/>
+        <module name="StaticVariableName"/>
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+        </module>
+
+        <!-- ===== 2. JAVADOC FOR PUBLIC CLASSES AND METHODS (error) ===== -->
+        <module name="MissingJavadocType">
+            <property name="scope" value="public"/>
+        </module>
+        <module name="MissingJavadocMethod">
+            <property name="scope" value="public"/>
+            <property name="allowMissingPropertyJavadoc" value="false"/>
+            <property name="tokens" value="METHOD_DEF, CTOR_DEF"/>
+        </module>
+        <!-- @param / @return / @throws must match the signature -->
+        <module name="JavadocMethod">
+            <property name="accessModifiers" value="public"/>
+        </module>
+        <!-- Javadoc wording, e.g. first sentence ends with a period -->
+        <module name="JavadocStyle">
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ===== 3. NO MAGIC NUMBERS (error) ===== -->
+        <module name="MagicNumber">
+            <property name="ignoreNumbers" value="-1, 0, 1, 2"/>
+            <property name="ignoreHashCodeMethod" value="true"/>
+            <property name="ignoreAnnotation" value="true"/>
+            <property name="ignoreFieldDeclaration" value="false"/>
+        </module>
+
+        <!-- ===== 4. INDENTATION (warning) ===== -->
+        <module name="Indentation">
+            <property name="basicOffset" value="4"/>
+            <property name="caseIndent" value="4"/>
+            <property name="lineWrappingIndentation" value="8"/>
+            <property name="arrayInitIndent" value="8"/>
+            <property name="forceStrictCondition" value="false"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ===== 5. WHITESPACE AROUND OPERATORS AND AFTER COMMAS (warning) ===== -->
+        <module name="WhitespaceAround">
+            <property name="allowEmptyConstructors" value="true"/>
+            <property name="allowEmptyMethods" value="true"/>
+            <property name="allowEmptyTypes" value="true"/>
+            <property name="allowEmptyLambdas" value="true"/>
+            <property name="severity" value="warning"/>
+        </module>
+        <module name="WhitespaceAfter">
+            <property name="tokens" value="COMMA, SEMI, TYPECAST"/>
+            <property name="severity" value="warning"/>
+        </module>
+        <module name="NoWhitespaceBefore">
+            <property name="severity" value="warning"/>
+        </module>
+        <module name="MethodParamPad">
+            <property name="severity" value="warning"/>
+        </module>
+        <module name="ParenPad">
+            <property name="severity" value="warning"/>
+        </module>
+        <module name="OperatorWrap">
+            <property name="option" value="nl"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ===== 6. KEEP SIGNATURES AND METHODS SHORT (warning) ===== -->
+        <module name="ParameterNumber">
+            <property name="max" value="5"/>
+            <property name="severity" value="warning"/>
+        </module>
+        <module name="MethodLength">
+            <property name="max" value="80"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ===== 7. INFORMATIONAL ONLY (info) ===== -->
+        <module name="TodoComment">
+            <property name="format" value="(TODO)|(FIXME)"/>
+            <property name="severity" value="info"/>
+        </module>
+    </module>
+</module>
