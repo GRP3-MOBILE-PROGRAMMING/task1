@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<!-- Generated code is not written by the team, so it is not checked. -->
+<suppressions>
+    <suppress files="[/\\]build[/\\]" checks=".*"/>
+    <suppress files="R\.java$|BuildConfig\.java$|.*_Impl\.java$" checks=".*"/>
+</suppressions>
