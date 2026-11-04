@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 public class SplashActivity extends AppCompatActivity {
 
     private static final long SPLASH_MS = 1500; // Step 8 refines the minimum display time
@@ -37,6 +39,13 @@ public class SplashActivity extends AppCompatActivity {
 
         // Splash appears immediately; loading starts in the background at the same time.
         setContentView(R.layout.activity_main);
+
+        // Keep all four screens clear of the status and navigation bars
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (v, insets) -> {
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+            return insets;
+        });
 
         viewModel = new ViewModelProvider(this).get(SplashViewModel.class);
         viewModel.getInternetStep().observe(this, s -> renderSteps());
