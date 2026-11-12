@@ -34,7 +34,7 @@ tasks.named("check") { dependsOn(checkstyleTask) }
 android {
     namespace = "com.example.buildgradle"
     compileSdk {
-        version = release(36) {
+        version = release(35) {
             minorApiLevel = 1
         }
     }
@@ -42,7 +42,7 @@ android {
     defaultConfig {
         applicationId = "com.example.buildgradle"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
