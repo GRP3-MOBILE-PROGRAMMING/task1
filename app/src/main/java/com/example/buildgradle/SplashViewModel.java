@@ -127,7 +127,7 @@ public class SplashViewModel extends AndroidViewModel {
         executor.execute(() -> {
 
             try {
-                // TODO Step 4: replace with the real internet check
+                // Step 4: replace with the real internet check
                 internetStep.postValue(StepStatus.RUNNING);
                 Thread.sleep(STEP_DELAY_MS);
                 if (!networkChecker.canReachInternet()) {
@@ -138,7 +138,7 @@ public class SplashViewModel extends AndroidViewModel {
                 }
                 internetStep.postValue(StepStatus.SUCCESS);
 
-                // TODO Step 5: replace with the real NTP time validation
+                // Step 5: replace with the real NTP time validation
                 timeStep.postValue(StepStatus.RUNNING);
                 Thread.sleep(STEP_DELAY_MS);
                 timeStep.postValue(StepStatus.SUCCESS);
@@ -163,12 +163,12 @@ public class SplashViewModel extends AndroidViewModel {
                 Log.d("UNEB", "Time OK. offset=" + offset + "ms, resultsReleased=" + released);
                 timeStep.postValue(StepStatus.SUCCESS);
 
-                // TODO Step 6: replace with the real token and exam years prefetch
+                // Step 6: replace with the real token and exam years prefetch
                 authStep.postValue(StepStatus.RUNNING);
                 Thread.sleep(STEP_DELAY_MS);
                 authStep.postValue(StepStatus.SUCCESS);
 
-                // TODO Step 7: replace with the real announcement download
+                // Step 7: replace with the real announcement download
                 dataStep.postValue(StepStatus.RUNNING);
                 Thread.sleep(STEP_DELAY_MS);
                 dataStep.postValue(StepStatus.SUCCESS);
@@ -183,7 +183,5 @@ public class SplashViewModel extends AndroidViewModel {
     @Override
     protected void onCleared() {
         executor.shutdownNow();
-
-
     }
 }
