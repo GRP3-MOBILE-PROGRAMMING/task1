@@ -33,11 +33,9 @@ tasks.named("check") { dependsOn(checkstyleTask) }
 
 android {
     namespace = "com.example.buildgradle"
-    compileSdk {
-        version = release(35) {
-            minorApiLevel = 1
-        }
-    }
+    
+    // FIXED: Changed from the minorApiLevel block to standard 35
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.buildgradle"
@@ -63,7 +61,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
-
 
 dependencies {
     implementation(libs.appcompat)
